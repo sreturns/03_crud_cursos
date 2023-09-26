@@ -5,6 +5,11 @@ import java.util.Optional;
 
 import com.sinensia.model.Course;
 
+/**
+ * Interfaz que implementaremos en nuestro Servicio CourseServiceImpl
+ * 
+ * @see com.sinensia.service.CourseServiceImpl
+ */
 public interface CourseService {
 
 	List<Course> addCourse(Course course);

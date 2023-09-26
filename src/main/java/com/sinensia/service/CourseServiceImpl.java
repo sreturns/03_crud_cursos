@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.sinensia.model.Course;
 
+/**
+ * A traves de la anotacion @Service declaramos que es un servicio e implementamos la interfaz CourseService
+ * 
+ * @see com.sinensia.service.CourseService
+ */
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -22,6 +27,12 @@ public class CourseServiceImpl implements CourseService {
 		courseList.add(new Course(5, "Go Course", 90, 130));
 	}
 
+	/**
+	 * Pasamos un curso para añadir, primero comprobamos que no este duplicado
+	 * 
+	 * @param Course
+	 * @return List<Course>
+	 */
 	@Override
 	public List<Course> addCourse(Course course) {
 		boolean courseDuplicated = courseList.stream().anyMatch(c -> c.getId() == course.getId());
@@ -33,17 +44,31 @@ public class CourseServiceImpl implements CourseService {
 		return courseList;
 	}
 
+	/**
+	 * Comprobamos si existe el id previo a su eliminacion
+	 * 
+	 * @param id
+	 * @return List<Course>
+	 */
 	@Override
 	public List<Course> deleteCourse(int id) {
 		courseList.removeIf(course -> course.getId() == id);
 		return courseList;
 	}
 
+	/**
+	 * @param id
+	 * @return Optional<Course>
+	 */
 	@Override
 	public Optional<Course> getCourseById(int id) {
 		return courseList.stream().filter(course -> course.getId() == id).findFirst();
 	}
 
+	/**
+	 * @param id
+	 * @param newDuration
+	 */
 	@Override
 	public void updateDuration(int id, int newDuration) {
 		Optional<Course> courseFounder = courseList.stream().filter(course -> course.getId() == id).findFirst();
